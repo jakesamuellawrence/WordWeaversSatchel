@@ -9,7 +9,7 @@ def create_app(test_config=None):
 	app.register_blueprint(translation.bp)
 	
 	@app.route('/')
-	def hello():
-		return "Home!"
+	def home():
+		return flask.render_template('home.html')
 	
 	return app

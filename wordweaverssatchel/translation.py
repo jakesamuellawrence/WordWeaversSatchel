@@ -12,11 +12,16 @@ def moth_to_eng():
 	else:
 		return "ERROR: Page was not submitted with POST"
 	
-	translation = search_by_mothertongue(mothertongue_in)
-	if translation is None:
-		return 'No results matched search'
-	mothertongue_out = translation[0]
-	english_out = translation[1]
+	mothertongue_out = ""
+	english_out = ""
+	
+	mothertongue_in = mothertongue_in.split()
+	for i in mothertongue_in:
+		translation = search_by_mothertongue(i)
+		if translation is None:
+			return 'No results matched search'
+		mothertongue_out = mothertongue_out + translation[0] + " "
+		english_out = english_out + translation[1] + " "
 	
 	return flask.render_template('home.html', english_box_value=english_out, mothertongue_box_value=mothertongue_out)
 	
@@ -27,11 +32,16 @@ def en_to_moth():
 	else:
 		return "ERROR: Page was not submitted with POST"
 	
-	translation = search_by_english(english_in)
-	if translation is None:
-		return 'No results matched search'
-	mothertongue_out = translation[0]
-	english_out = translation[1]
+	mothertongue_out = ""
+	english_out = ""
+	
+	english_in = english_in.split()
+	for i in english_in:
+		translation = search_by_english(i)
+		if translation is None:
+			return 'No results matched search'
+		mothertongue_out = mothertongue_out + translation[0] + " "
+		english_out = english_out + translation[1] + " "
 	
 	return flask.render_template('home.html', mothertongue_box_value=mothertongue_out, english_box_value=english_out)
 	
@@ -42,7 +52,7 @@ def search_by_mothertongue(target):
 	
 	# search for given term
 	for i in cache:
-		if i[0].lower() == target.lower():
+		if i[0].lower().strip() == target.lower().strip():
 			return i
 	return None
 	
@@ -53,7 +63,7 @@ def search_by_english(target):
 	
 	# search for given term
 	for i in cache:
-		if i[1].lower() == target.lower():
+		if i[1].lower().strip() == target.lower().strip():
 			return i
 	return None
 

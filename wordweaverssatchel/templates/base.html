@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+	<head>
+		<title>WordWeaver's Satchel</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+	<body>
+		<h1>WordWeaver's Satchel</h1>
+		<div id='tool'>
+			{% block tool %}
+			{% endblock %}
+		</div>
+		<nav id='satchel'>
+			<ul>
+				<li>
+					Translator
+				</li>
+			</ul>
+		</nav>
+	</body>
+</html>

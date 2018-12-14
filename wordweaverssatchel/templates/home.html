@@ -1,27 +1,20 @@
-<!doctype html>
-<html>
-	<head>
-		<title>Word Weaver's Satchel</title>
-	</head>
-	<body>
-		<div id='heading'>
-			<h1>Word Weaver's Satchel</h1>
-		</div>
-		<div id='translator'>
-			<form method='post' id='translation_form'>
-				<div id='mothertongue'>
-					<label for='mothertongue_box'>Mothertongue:</label>
-					<input type='textarea' name='mothertongue_box' id='mothertongue_box' value='{{ mothertongue_box_value }}' form='translation_form'>
-				</div>
-				<div id='buttons'>
-					<button type='submit' form='translation_form' formaction='/translation/eng_to_moth'>↑</button>
-					<button type='submit' form='translation_form' formaction='/translation/moth_to_eng'>↓</button>
-				</div>
-				<div id='english'>
-					<label for='english_box' form='translation_form'>English:</label>
-					<input type='textarea' name='english_box' id='english_box' value='{{ english_box_value }}' form='translation_form'>
-				</div>
-			</form>
-		</div>
-	</body>
-</html>
+{% extends 'base.html' %}
+
+{% block tool %}
+<h2>Mothertongue To English Translator</h2>
+
+<form method='post' id='translation_form' formaction='/translation/moth_to_eng'>
+	<div id='mothertongue'>
+		<label for='mothertongue_box'>Mothertongue:</label>
+		<input type='textarea' name='mothertongue_box' id='mothertongue_box' value='{{ mothertongue_box_value }}' form='translation_form'>
+	</div>
+	<div id='buttons'>
+		<button type='submit' form='translation_form' formaction='/translation/eng_to_moth'>↑</button>
+		<button type='submit' form='translation_form' formaction='/translation/moth_to_eng'>↓</button>
+	</div>
+	<div id='english'>
+		<label for='english_box' form='translation_form'>English:</label>
+		<input type='textarea' name='english_box' id='english_box' value='{{ english_box_value }}' form='translation_form'>
+	</div>
+</form>
+{% endblock %}

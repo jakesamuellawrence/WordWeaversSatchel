@@ -10,6 +10,8 @@
 	</div>
 	<div id='buttons'>
 		<button type='submit' form='translation_form' formaction='/translation/eng_to_moth'>↑</button>
+		<label for='cost_box'>Cost:</label>
+		<input type='textarea' name='cost_box' form='translation_form' readonly='readonly' value='{{ cost }}'>
 		<button type='submit' form='translation_form' formaction='/translation/moth_to_eng'>↓</button>
 	</div>
 	<div id='english'>
@@ -17,4 +19,34 @@
 		<input type='textarea' name='english_box' id='english_box' value='{{ english_box_value }}' form='translation_form'>
 	</div>
 </form>
+<div id='breakdown'>
+	<b>Breakdown: </b> <br/>
+	{% autoescape false %}
+		{{ breakdown }}
+	{% endautoescape %}
+</div>
+
+<hr>
+
+<div id='new_vocab'>
+	<h3>Add New Vocabulary</h3>
+	<form method='post' id='new_vocab_form' action='/translation/new'>
+		<label for='new_mothertongue'>Mothertongue:</label>
+		<input type='text' name='new_mothertongue' id='new_mothertongue' required>
+		<br/>
+		<label for='new_english'>English:</label>
+		<input type='text' name='new_english' id='new_english' required>
+		<br/>
+		<label for='new_arbonym'>Is Arbonym?</label>
+		<select name="new_arbonym" size="2">
+			<option value="false">false</option>
+			<option value="true">true</option>
+		</select>
+		<br/>
+		<label for='new_cost'>Cost:</label>
+		<input type='number' name='new_cost' id='new_cost' required>
+		<br/>
+		<button type='submit'>Submit</button>
+	</form>
+</div>
 {% endblock %}
